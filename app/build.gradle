@@ -51,4 +51,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycle"
     //smooth bottom nav
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
+
+    //image slider
+    implementation 'com.github.smarteist:autoimageslider:1.4.0'
 }
