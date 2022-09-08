@@ -6,9 +6,10 @@
         <entry key="..\:/Android/CryptoTracker/app/src/main/res/drawable/round_shape.xml" value="0.2715" />
         <entry key="..\:/Android/CryptoTracker/app/src/main/res/layout/activity_main.xml" value="0.34479166666666666" />
         <entry key="..\:/Android/CryptoTracker/app/src/main/res/layout/dashboard_image_silder_layout.xml" value="0.34375" />
-        <entry key="..\:/Android/CryptoTracker/app/src/main/res/layout/fragment_dashboard.xml" value="0.34479166666666666" />
+        <entry key="..\:/Android/CryptoTracker/app/src/main/res/layout/fragment_dashboard.xml" value="0.25" />
         <entry key="..\:/Android/CryptoTracker/app/src/main/res/layout/fragment_portfolio.xml" value="0.34479166666666666" />
         <entry key="..\:/Android/CryptoTracker/app/src/main/res/layout/fragment_watch_list.xml" value="0.34479166666666666" />
+        <entry key="..\:/Android/CryptoTracker/app/src/main/res/layout/top_currecny_layout.xml" value="0.67" />
         <entry key="..\:/Android/CryptoTracker/app/src/main/res/menu/bottom_nav_menu.xml" value="0.34479166666666666" />
       </map>
     </option>

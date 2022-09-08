@@ -29,7 +29,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 }
@@ -51,7 +51,17 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycle"
     //smooth bottom nav
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
-
     //image slider
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
+
+    //gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    //coroutine
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 }
