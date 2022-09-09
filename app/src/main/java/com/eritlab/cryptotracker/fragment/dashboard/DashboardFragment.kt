@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eritlab.cryptotracker.R
 import com.eritlab.cryptotracker.adapter.SliderAdapter
+import com.eritlab.cryptotracker.adapter.TabLayoutViewPagerAdapter
 import com.eritlab.cryptotracker.adapter.TopCurrencyAdapter
 import com.eritlab.cryptotracker.api.CryptoDataService
 import com.eritlab.cryptotracker.api.CryptoRetrofitHelper
@@ -17,6 +18,7 @@ import com.eritlab.cryptotracker.databinding.FragmentDashboardBinding
 import com.eritlab.cryptotracker.model.MarketModel
 import com.eritlab.cryptotracker.repository.ApiDataRepository
 import com.eritlab.cryptotracker.repository.Response
+import com.google.android.material.tabs.TabLayoutMediator
 
 class DashboardFragment : Fragment() {
     private lateinit var binding: FragmentDashboardBinding
@@ -50,8 +52,28 @@ class DashboardFragment : Fragment() {
         }
 
 
+        binding.tabContentViewPager.adapter = TabLayoutViewPagerAdapter(this)
+        TabLayoutMediator(binding.tabLayout, binding.tabContentViewPager) { tab, position ->
+            tab.text = when (position) {
+                0 -> {
+                    "Top Gainers"
+                }
+                1 -> {
+                    "Top Losers"
+                }
+                else -> {
+                    "Top Gainers"
+                }
+            }
+        }.attach()
+
+
         setCurrencyImageSlider()
         return binding.root
+    }
+
+    private fun setTabLayout() {
+
     }
 
     private fun setTopCurrencyAdapter(data: MarketModel) {
