@@ -1,5 +1,9 @@
 package com.eritlab.cryptotracker.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Quote(
     val dominance: Double,
     val fullyDilluttedMarketCap: Double,
@@ -18,4 +22,4 @@ data class Quote(
     val tvl: Double,
     val volume24h: Double,
     val ytdPriceChangePercentage: Double
-)
+) : Parcelable

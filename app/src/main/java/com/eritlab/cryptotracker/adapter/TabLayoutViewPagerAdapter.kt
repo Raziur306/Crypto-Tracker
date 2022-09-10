@@ -1,13 +1,18 @@
 package com.eritlab.cryptotracker.adapter
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.eritlab.cryptotracker.fragment.topGainers.TopGainersFragment
 import com.eritlab.cryptotracker.fragment.topLosers.TopLosersFragment
+import com.eritlab.cryptotracker.model.CryptoCurrency
 
 
-class TabLayoutViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+class TabLayoutViewPagerAdapter(
+    fragment: Fragment,
+    private val topGainerList: ArrayList<CryptoCurrency>,
+    private val topLooserList: ArrayList<CryptoCurrency>
+) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int {
         return 2
     }
@@ -15,13 +20,25 @@ class TabLayoutViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragm
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> {
-                TopGainersFragment()
+                val bundle = Bundle()
+                bundle.putParcelableArrayList("data", topGainerList)
+                TopGainersFragment().apply {
+                    arguments = bundle
+                }
             }
             1 -> {
-                TopLosersFragment()
+                val bundle = Bundle()
+                bundle.putParcelableArrayList("data", topLooserList)
+                TopLosersFragment().apply {
+                    arguments = bundle
+                }
             }
             else -> {
-                TopGainersFragment()
+                val bundle = Bundle()
+                bundle.putParcelableArrayList("data", topGainerList)
+                TopGainersFragment().apply {
+                    arguments = bundle
+                }
             }
         }
     }

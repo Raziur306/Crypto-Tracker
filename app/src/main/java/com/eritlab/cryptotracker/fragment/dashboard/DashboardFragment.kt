@@ -15,6 +15,7 @@ import com.eritlab.cryptotracker.adapter.TopCurrencyAdapter
 import com.eritlab.cryptotracker.api.CryptoDataService
 import com.eritlab.cryptotracker.api.CryptoRetrofitHelper
 import com.eritlab.cryptotracker.databinding.FragmentDashboardBinding
+import com.eritlab.cryptotracker.model.CryptoCurrency
 import com.eritlab.cryptotracker.model.MarketModel
 import com.eritlab.cryptotracker.repository.ApiDataRepository
 import com.eritlab.cryptotracker.repository.Response
@@ -44,6 +45,7 @@ class DashboardFragment : Fragment() {
                 is Response.Loading -> {}
                 is Response.Success -> {
                     setTopCurrencyAdapter(it.data!!)
+                    setTabLayout(it.data)
                 }
                 is Response.Error -> {
                     Toast.makeText(requireContext(), it.errorMessage, Toast.LENGTH_SHORT).show()
@@ -52,7 +54,24 @@ class DashboardFragment : Fragment() {
         }
 
 
-        binding.tabContentViewPager.adapter = TabLayoutViewPagerAdapter(this)
+
+
+        setCurrencyImageSlider()
+        return binding.root
+    }
+
+    private fun setTabLayout(data: MarketModel) {
+        val topGainerList = ArrayList<CryptoCurrency>()
+        val topLooserList = ArrayList<CryptoCurrency>()
+        data.data.cryptoCurrencyList.forEach { cryptoCurrency ->
+            if (cryptoCurrency.quotes[0].percentChange24h > 0)
+                topGainerList.add(cryptoCurrency)
+            else
+                topLooserList.add(cryptoCurrency)
+        }
+
+        binding.tabContentViewPager.adapter =
+            TabLayoutViewPagerAdapter(this, topGainerList, topLooserList)
         TabLayoutMediator(binding.tabLayout, binding.tabContentViewPager) { tab, position ->
             tab.text = when (position) {
                 0 -> {
@@ -66,14 +85,6 @@ class DashboardFragment : Fragment() {
                 }
             }
         }.attach()
-
-
-        setCurrencyImageSlider()
-        return binding.root
-    }
-
-    private fun setTabLayout() {
-
     }
 
     private fun setTopCurrencyAdapter(data: MarketModel) {

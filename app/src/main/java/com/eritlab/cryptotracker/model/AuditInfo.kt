@@ -1,5 +1,9 @@
 package com.eritlab.cryptotracker.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class AuditInfo(
     val auditStatus: Int,
     val auditTime: String,
@@ -9,4 +13,4 @@ data class AuditInfo(
     val contractPlatform: String,
     val reportUrl: String,
     val score: String
-)
+):Parcelable

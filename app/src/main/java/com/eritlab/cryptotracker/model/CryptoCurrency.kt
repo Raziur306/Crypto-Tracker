@@ -1,5 +1,9 @@
 package com.eritlab.cryptotracker.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class CryptoCurrency(
     val auditInfoList: List<AuditInfo>,
     val circulatingSupply: Double,
@@ -19,4 +23,4 @@ data class CryptoCurrency(
     val symbol: String,
     val tags: List<String>,
     val totalSupply: Double
-)
+): Parcelable
