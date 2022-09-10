@@ -11,13 +11,28 @@ import com.eritlab.cryptotracker.fragment.watchlist.WatchListFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
+
+    //saving fragment
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("attachedFragment", true)
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentViewer, DashboardFragment()).commit()
+        if (savedInstanceState == null || savedInstanceState.getBoolean(
+                "attachedFragment",
+                false
+            )
+        ) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentViewer, DashboardFragment()).commit()
+        }
         binding.bottomBar.setOnItemSelectedListener { item ->
             when (item) {
                 0 -> {

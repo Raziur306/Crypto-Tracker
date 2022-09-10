@@ -27,6 +27,7 @@ class TopGainersFragment : Fragment() {
         binding.topGainerRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = TopGainersAndLosersAdapter(data!!)
+            isNestedScrollingEnabled = false
         }
 
     }

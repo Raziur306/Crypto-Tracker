@@ -1,6 +1,7 @@
 package com.eritlab.cryptotracker.fragment.dashboard
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -40,15 +41,21 @@ class DashboardFragment : Fragment() {
             )[DashboardFragmentViewModel::class.java]
 
 
-        viewModel.result.observe(requireActivity()) {
-            when (it) {
+        viewModel.result.observe(requireActivity()) { obData ->
+            when (obData) {
                 is Response.Loading -> {}
                 is Response.Success -> {
-                    setTopCurrencyAdapter(it.data!!)
-                    setTabLayout(it.data)
+                    obData.data.let {
+                        if (it != null) {
+                            setTopCurrencyAdapter(it)
+                            setTabLayout(it)
+                        }
+
+                    }
+
                 }
                 is Response.Error -> {
-                    Toast.makeText(requireContext(), it.errorMessage, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), obData.errorMessage, Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -69,28 +76,38 @@ class DashboardFragment : Fragment() {
             else
                 topLooserList.add(cryptoCurrency)
         }
+        try {
+            binding.tabContentViewPager.adapter =
+                TabLayoutViewPagerAdapter(this, topGainerList, topLooserList)
+            TabLayoutMediator(binding.tabLayout, binding.tabContentViewPager) { tab, position ->
+                tab.text = when (position) {
+                    0 -> {
+                        "Top Gainers"
+                    }
+                    1 -> {
+                        "Top Losers"
+                    }
+                    else -> {
+                        "Top Gainers"
+                    }
+                }
+            }.attach()
+        } catch (e: Exception) {
+            Log.d("DashboardFragmnetTab", e.message.toString())
+        }
 
-        binding.tabContentViewPager.adapter =
-            TabLayoutViewPagerAdapter(this, topGainerList, topLooserList)
-        TabLayoutMediator(binding.tabLayout, binding.tabContentViewPager) { tab, position ->
-            tab.text = when (position) {
-                0 -> {
-                    "Top Gainers"
-                }
-                1 -> {
-                    "Top Losers"
-                }
-                else -> {
-                    "Top Gainers"
-                }
-            }
-        }.attach()
     }
 
+
     private fun setTopCurrencyAdapter(data: MarketModel) {
-        binding.topCurrencyRecycler.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.topCurrencyRecycler.adapter = TopCurrencyAdapter(data.data.cryptoCurrencyList)
+        try {
+            binding.topCurrencyRecycler.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            binding.topCurrencyRecycler.adapter = TopCurrencyAdapter(data.data.cryptoCurrencyList)
+        } catch (e: Exception) {
+            Log.d("DashBoardFragment", e.message.toString())
+        }
+
     }
 
     //currency image slider
