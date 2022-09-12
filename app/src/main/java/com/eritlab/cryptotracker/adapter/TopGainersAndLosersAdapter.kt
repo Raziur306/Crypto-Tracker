@@ -9,15 +9,30 @@ import com.eritlab.cryptotracker.R
 import com.eritlab.cryptotracker.databinding.TopLossGainerRecyclerBinding
 import com.eritlab.cryptotracker.model.CryptoCurrency
 
-class TopGainersAndLosersAdapter(private val gainerList: List<CryptoCurrency>) :
+class TopGainersAndLosersAdapter(
+    private val gainerList: List<CryptoCurrency>,
+    private val recyclerViewInterface: RecyclerViewInterface
+) :
     RecyclerView.Adapter<TopGainersAndLosersAdapter.ViewHolder>() {
-    class ViewHolder(val binding: TopLossGainerRecyclerBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(
+        val binding: TopLossGainerRecyclerBinding,
+        recyclerViewInterface: RecyclerViewInterface
+    ) :
+        RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.root.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    recyclerViewInterface.onItemClick(position)
+                }
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
             TopLossGainerRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+        return ViewHolder(binding, recyclerViewInterface)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -37,11 +52,14 @@ class TopGainersAndLosersAdapter(private val gainerList: List<CryptoCurrency>) :
 
         holder.binding.report.apply {
             text =
-                if (gainerList[position].quotes[0].percentChange24h > 0)
+                if (gainerList[position].quotes[0].percentChange24h > 0) {
+                    setTextColor(Color.GREEN)
                     "+${String.format("%.2f", gainerList[position].quotes[0].percentChange24h)}%"
-                else
+                } else {
+                    setTextColor(Color.RED)
                     "${String.format("%.2f", gainerList[position].quotes[0].percentChange24h)}%"
-            setTextColor(Color.GREEN)
+                }
+
         }
         holder.binding.priceUsd.text =
             String.format("%.2f", gainerList[position].quotes[0].price)

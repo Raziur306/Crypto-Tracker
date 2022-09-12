@@ -2,8 +2,6 @@ package com.eritlab.cryptotracker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.FragmentManager
 import com.eritlab.cryptotracker.databinding.ActivityMainBinding
 import com.eritlab.cryptotracker.fragment.dashboard.DashboardFragment
 import com.eritlab.cryptotracker.fragment.portfolio.PortfolioFragment
@@ -15,8 +13,8 @@ class MainActivity : AppCompatActivity() {
 
     //saving fragment
     override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
         outState.putBoolean("attachedFragment", true)
+        super.onSaveInstanceState(outState)
     }
 
 
@@ -31,21 +29,21 @@ class MainActivity : AppCompatActivity() {
             )
         ) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentViewer, DashboardFragment()).commit()
+                .replace(R.id.parentFragmentViewer, DashboardFragment()).commit()
         }
         binding.bottomBar.setOnItemSelectedListener { item ->
             when (item) {
                 0 -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentViewer, DashboardFragment()).commit()
+                        .replace(R.id.parentFragmentViewer, DashboardFragment()).commit()
                 }
                 1 -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentViewer, PortfolioFragment()).commit()
+                        .replace(R.id.parentFragmentViewer, PortfolioFragment()).commit()
                 }
                 2 -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentViewer, WatchListFragment()).commit()
+                        .replace(R.id.parentFragmentViewer, WatchListFragment()).commit()
                 }
             }
 
