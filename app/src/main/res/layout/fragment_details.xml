@@ -63,13 +63,86 @@
             android:src="@drawable/ic_baseline_star_outline_24" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TextView
+            android:id="@+id/btn15Min"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/round_shape"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="15min" />
+
+        <TextView
+            android:id="@+id/btn1Hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/round_shape"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="1Hour" />
+
+        <TextView
+            android:id="@+id/btn4Hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/round_shape"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="4Hour" />
+
+        <TextView
+            android:id="@+id/btn1Day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/round_shape"
+            android:backgroundTint="#3F51B5"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="1Day" />
+
+        <TextView
+            android:id="@+id/btn1Week"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/round_shape"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="1Week" />
+
+        <TextView
+            android:id="@+id/btn1Month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/round_shape"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="1 Month" />
+    </LinearLayout>
+
     <WebView
         android:id="@+id/webView"
         android:layout_width="0dp"
         android:layout_height="250dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:layout_editor_absoluteY="98dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="409dp"
