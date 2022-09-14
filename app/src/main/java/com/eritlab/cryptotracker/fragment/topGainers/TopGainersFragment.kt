@@ -31,7 +31,6 @@ class TopGainersFragment : Fragment(), RecyclerViewInterface {
         binding.topGainerRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = TopGainersAndLosersAdapter(data!!, this@TopGainersFragment)
-            isNestedScrollingEnabled = false
         }
 
     }
@@ -42,6 +41,6 @@ class TopGainersFragment : Fragment(), RecyclerViewInterface {
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.parentFragmentViewer, DetailsFragment().apply {
                 arguments = bundle
-            },"TOP_GAINERS_FRAGMENT").addToBackStack(null).commit()
+            }, "TOP_GAINERS_FRAGMENT").addToBackStack(null).commit()
     }
 }

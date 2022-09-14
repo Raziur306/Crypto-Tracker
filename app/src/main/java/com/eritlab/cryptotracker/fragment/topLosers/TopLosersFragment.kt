@@ -32,7 +32,6 @@ class TopLosersFragment : Fragment(), RecyclerViewInterface {
         binding.topLoserRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = TopGainersAndLosersAdapter(data!!, this@TopLosersFragment)
-
         }
     }
 
