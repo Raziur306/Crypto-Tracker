@@ -42,7 +42,7 @@ class TopLosersFragment : Fragment(), RecyclerViewInterface {
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.parentFragmentViewer, DetailsFragment().apply {
                 arguments = bundle
-            }).addToBackStack(null).commit()
+            }, "TOP_LOSERS_FRAGMENT").addToBackStack(null).commit()
     }
 }
 

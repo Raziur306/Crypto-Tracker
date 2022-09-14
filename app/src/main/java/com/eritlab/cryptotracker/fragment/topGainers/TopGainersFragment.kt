@@ -42,6 +42,6 @@ class TopGainersFragment : Fragment(), RecyclerViewInterface {
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.parentFragmentViewer, DetailsFragment().apply {
                 arguments = bundle
-            }).addToBackStack(null).commit()
+            },"TOP_GAINERS_FRAGMENT").addToBackStack(null).commit()
     }
 }

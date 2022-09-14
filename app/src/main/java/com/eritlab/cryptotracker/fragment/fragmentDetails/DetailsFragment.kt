@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.eritlab.cryptotracker.R
 import com.eritlab.cryptotracker.databinding.FragmentDetailsBinding
@@ -27,6 +28,12 @@ class DetailsFragment : Fragment() {
             settings.javaScriptEnabled = true
             setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         }
+
+        binding.saveWatchList.setOnClickListener {
+            binding.saveWatchList.setBackgroundResource(R.drawable.ic_baseline_star_24)
+        }
+
+
         binding.btn15Min.setOnClickListener {
             setChart("15", data)
             setButtonBg(
@@ -157,12 +164,26 @@ class DetailsFragment : Fragment() {
             background.setTint(Color.parseColor("#3F51B5"))
             setTextColor(Color.WHITE)
         }
-        button2.background.setTint(Color.TRANSPARENT)
-        button3.background.setTint(Color.TRANSPARENT)
-        button4.background.setTint(Color.TRANSPARENT)
-        button5.background.setTint(Color.TRANSPARENT)
-        button6.background.setTint(Color.TRANSPARENT)
-
+        button2.apply {
+            background.setTint(Color.TRANSPARENT)
+            setTextColor(Color.parseColor("#7f8185"))
+        }
+        button3.apply {
+            background.setTint(Color.TRANSPARENT)
+            setTextColor(Color.parseColor("#7f8185"))
+        }
+        button4.apply {
+            background.setTint(Color.TRANSPARENT)
+            setTextColor(Color.parseColor("#7f8185"))
+        }
+        button5.apply {
+            background.setTint(Color.TRANSPARENT)
+            setTextColor(Color.parseColor("#7f8185"))
+        }
+        button6.apply {
+            background.setTint(Color.TRANSPARENT)
+            setTextColor(Color.parseColor("#7f8185"))
+        }
 
     }
 

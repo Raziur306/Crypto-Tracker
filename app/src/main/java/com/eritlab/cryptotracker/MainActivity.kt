@@ -2,6 +2,7 @@ package com.eritlab.cryptotracker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.eritlab.cryptotracker.databinding.ActivityMainBinding
 import com.eritlab.cryptotracker.fragment.dashboard.DashboardFragment
 import com.eritlab.cryptotracker.fragment.portfolio.PortfolioFragment
@@ -49,5 +50,20 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+
+        //check which fragment is active
+
+        supportFragmentManager.addOnBackStackChangedListener {
+            val activeFragment =
+                supportFragmentManager.findFragmentByTag("TOP_LOSERS_FRAGMENT") != null
+                        || supportFragmentManager.findFragmentByTag("TOP_GAINERS_FRAGMENT") != null
+            if (activeFragment) {
+                binding.bottomBar.visibility = View.GONE
+            } else
+                binding.bottomBar.visibility = View.VISIBLE
+        }
+
     }
+
+
 }

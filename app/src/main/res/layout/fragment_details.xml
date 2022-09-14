@@ -81,7 +81,8 @@
             android:background="@drawable/round_shape"
             android:gravity="center"
             android:padding="8dp"
-            android:text="15min" />
+            android:text="15min"
+            android:textColor="#7f8185" />
 
         <TextView
             android:id="@+id/btn1Hour"
@@ -91,7 +92,8 @@
             android:background="@drawable/round_shape"
             android:gravity="center"
             android:padding="8dp"
-            android:text="1Hour" />
+            android:text="1Hour"
+            android:textColor="#7f8185" />
 
         <TextView
             android:id="@+id/btn4Hour"
@@ -101,7 +103,8 @@
             android:background="@drawable/round_shape"
             android:gravity="center"
             android:padding="8dp"
-            android:text="4Hour" />
+            android:text="4Hour"
+            android:textColor="#7f8185" />
 
         <TextView
             android:id="@+id/btn1Day"
@@ -112,7 +115,8 @@
             android:backgroundTint="#3F51B5"
             android:gravity="center"
             android:padding="8dp"
-            android:text="1Day" />
+            android:text="1Day"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/btn1Week"
@@ -122,7 +126,8 @@
             android:background="@drawable/round_shape"
             android:gravity="center"
             android:padding="8dp"
-            android:text="1Week" />
+            android:text="1Week"
+            android:textColor="#7f8185" />
 
         <TextView
             android:id="@+id/btn1Month"
@@ -132,7 +137,8 @@
             android:background="@drawable/round_shape"
             android:gravity="center"
             android:padding="8dp"
-            android:text="1 Month" />
+            android:text="1 Month"
+            android:textColor="#7f8185" />
     </LinearLayout>
 
     <WebView
