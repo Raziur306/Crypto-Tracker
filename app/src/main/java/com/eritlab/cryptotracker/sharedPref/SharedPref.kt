@@ -23,9 +23,9 @@ class SharedPref : Application() {
         editor.apply()
     }
 
-    fun getWatchList() {
+    fun getWatchList(): ArrayList<String> {
         val json = sharedPref.getString("watchList", ArrayList<String>().toString())
         val type = object : TypeToken<ArrayList<String>>() {}.type
-        return gson.fromJson(json, type)
+        return gson.fromJson(json, type) as ArrayList<String>
     }
 }

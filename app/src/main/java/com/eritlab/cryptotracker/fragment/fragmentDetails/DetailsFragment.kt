@@ -7,14 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.eritlab.cryptotracker.R
 import com.eritlab.cryptotracker.databinding.FragmentDetailsBinding
 import com.eritlab.cryptotracker.model.CryptoCurrency
+import com.eritlab.cryptotracker.sharedPref.SharedPref
 
 class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
+    private lateinit var sharedPref: SharedPref
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,6 +25,12 @@ class DetailsFragment : Fragment() {
         val data = arguments?.getParcelable<CryptoCurrency>("data")!!
         setData(data)
         setChart("D", data)
+        sharedPref = requireActivity().applicationContext as SharedPref
+
+        //set watch list image resource
+
+        if (sharedPref.getWatchList().contains(data.id.toString()))
+            binding.saveWatchList.setImageResource(R.drawable.ic_baseline_star_24)
 
         binding.webView.apply {
             settings.javaScriptEnabled = true
@@ -30,7 +38,7 @@ class DetailsFragment : Fragment() {
         }
 
         binding.saveWatchList.setOnClickListener {
-            binding.saveWatchList.setBackgroundResource(R.drawable.ic_baseline_star_24)
+            updateWatchList(data)
         }
 
 
@@ -107,6 +115,20 @@ class DetailsFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    private fun updateWatchList(data: CryptoCurrency) {
+        val list = sharedPref.getWatchList()
+        if (list.contains(data.id.toString())) {
+            binding.saveWatchList.setImageResource(R.drawable.ic_baseline_star_outline_24)
+            list.removeAt(list.indexOf(data.id.toString()))
+            Toast.makeText(requireContext(), "Removed from Watchlist", Toast.LENGTH_SHORT).show()
+        } else {
+            binding.saveWatchList.setImageResource(R.drawable.ic_baseline_star_24)
+            list.add(data.id.toString())
+            Toast.makeText(requireContext(), "Added to Watchlist", Toast.LENGTH_SHORT).show()
+        }
+        sharedPref.setWatchList(list)
     }
 
 

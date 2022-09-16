@@ -11,9 +11,9 @@
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        app:backgroundColor="#DEF3F8"
+        app:backgroundColor="#123456"
         app:iconSize="28dp"
-        app:iconTint="@color/black"
+        app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/bottom_nav_menu" />
