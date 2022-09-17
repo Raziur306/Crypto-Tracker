@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CryptoCurrency(
-    val auditInfoList: List<AuditInfo>,
+    val auditInfoList: List<AuditInfo>?,
     val circulatingSupply: Double,
     val cmcRank: Int,
     val dateAdded: String,
@@ -17,10 +17,10 @@ data class CryptoCurrency(
     val maxSupply: Long,
     val name: String,
     val platform: Platform,
-    val quotes: List<Quote>,
+    val quotes: List<Quote>?,
     val selfReportedCirculatingSupply: Double,
     val slug: String,
     val symbol: String,
-    val tags: List<String>,
+    val tags: List<String>?,
     val totalSupply: Double
 ): Parcelable

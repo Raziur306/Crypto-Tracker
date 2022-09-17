@@ -52,17 +52,27 @@ class TopGainersAndLosersAdapter(
 
         holder.binding.report.apply {
             text =
-                if (gainerList[position].quotes[0].percentChange24h > 0) {
+                if (gainerList[position].quotes?.get(0)!!.percentChange24h > 0) {
                     setTextColor(Color.GREEN)
-                    "+${String.format("%.2f", gainerList[position].quotes[0].percentChange24h)}%"
+                    "+${
+                        String.format(
+                            "%.2f",
+                            gainerList[position].quotes?.get(0)!!.percentChange24h
+                        )
+                    }%"
                 } else {
                     setTextColor(Color.RED)
-                    "${String.format("%.2f", gainerList[position].quotes[0].percentChange24h)}%"
+                    "${
+                        String.format(
+                            "%.2f",
+                            gainerList[position].quotes?.get(0)!!.percentChange24h
+                        )
+                    }%"
                 }
 
         }
         holder.binding.priceUsd.text =
-            String.format("%.2f", gainerList[position].quotes[0].price)
+            String.format("%.2f", gainerList[position].quotes?.get(0)!!.price)
         holder.binding.currencyName.text = gainerList[position].name
         holder.binding.symbol.text = gainerList[position].symbol
         holder.binding.serial.text = gainerList[position].id.toString()

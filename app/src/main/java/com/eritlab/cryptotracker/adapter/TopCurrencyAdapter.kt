@@ -30,18 +30,18 @@ class TopCurrencyAdapter(private val topCurrencyList: List<CryptoCurrency>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.currencyName.text = topCurrencyList[position].name
 
-        if (topCurrencyList[position].quotes[0].percentChange24h > 0)
+        if (topCurrencyList[position].quotes?.get(0)!!.percentChange24h > 0)
             holder.binding.currencyValue.apply {
-                text = "+" + topCurrencyList[position].quotes[0].percentChange24h
+                text = "+" + topCurrencyList[position].quotes?.get(0)?.percentChange24h
                 setTextColor(Color.GREEN)
             } else {
             holder.binding.currencyValue.apply {
-                text = topCurrencyList[position].quotes[0].percentChange24h.toString()
+                text = topCurrencyList[position].quotes?.get(0)?.percentChange24h.toString()
                 setTextColor(Color.RED)
             }
         }
         holder.binding.currencyValue.text =
-            topCurrencyList[position].quotes[0].price.toString()
+            topCurrencyList[position].quotes?.get(0)?.price.toString()
 
         Log.d("Ronju", topCurrencyList[position].id.toString())
 

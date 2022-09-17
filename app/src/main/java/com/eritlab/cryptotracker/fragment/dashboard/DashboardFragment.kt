@@ -71,7 +71,7 @@ class DashboardFragment : Fragment() {
         val topGainerList = ArrayList<CryptoCurrency>()
         val topLooserList = ArrayList<CryptoCurrency>()
         data.data.cryptoCurrencyList.forEach { cryptoCurrency ->
-            if (cryptoCurrency.quotes[0].percentChange24h > 0)
+            if (cryptoCurrency.quotes?.get(0)!!.percentChange24h > 0)
                 topGainerList.add(cryptoCurrency)
             else
                 topLooserList.add(cryptoCurrency)
@@ -93,7 +93,7 @@ class DashboardFragment : Fragment() {
                 }
             }.attach()
         } catch (e: Exception) {
-            Log.d("DashboardFragmnetTab", e.message.toString())
+            Log.d("DashboardFragmentTab", e.message.toString())
         }
 
     }
