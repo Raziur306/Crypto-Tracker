@@ -1,5 +1,7 @@
 package com.eritlab.cryptotracker.fragment.topGainers
 
+import android.os.Build
+import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
@@ -13,6 +15,8 @@ import com.eritlab.cryptotracker.adapter.TopGainersAndLosersAdapter
 import com.eritlab.cryptotracker.databinding.FragmentTopGainersBinding
 import com.eritlab.cryptotracker.fragment.fragmentDetails.DetailsFragment
 import com.eritlab.cryptotracker.model.CryptoCurrency
+import java.util.concurrent.CyclicBarrier
+
 
 class TopGainersFragment : Fragment(), RecyclerViewInterface {
     private lateinit var binding: FragmentTopGainersBinding
@@ -22,7 +26,13 @@ class TopGainersFragment : Fragment(), RecyclerViewInterface {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentTopGainersBinding.inflate(layoutInflater)
-        topGainerList = arguments?.getParcelableArrayList<CryptoCurrency>("data")!!
+        topGainerList =
+            if (Build.VERSION_CODES.TIRAMISU <= SDK_INT) {
+                arguments?.getParcelableArrayList("data", CryptoCurrency::class.java)!!
+            } else {
+                @Suppress("DEPRECATION")
+                arguments?.getParcelableArrayList<CryptoCurrency>("data")!!
+            }
         setAdapter(topGainerList)
         return binding.root
     }

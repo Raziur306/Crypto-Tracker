@@ -1,5 +1,6 @@
 package com.eritlab.cryptotracker.fragment.topLosers
 
+import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
@@ -23,7 +24,12 @@ class TopLosersFragment : Fragment(), RecyclerViewInterface {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentTopLosersBinding.inflate(layoutInflater)
-        topLoserList = arguments?.getParcelableArrayList<CryptoCurrency>("data")!!
+        topLoserList = if (Build.VERSION_CODES.TIRAMISU <= Build.VERSION.SDK_INT) {
+            arguments?.getParcelableArrayList("data", CryptoCurrency::class.java)!!
+        } else {
+            @Suppress("DEPRECATION")
+            arguments?.getParcelableArrayList<CryptoCurrency>("data")!!
+        }
         setAdapter(topLoserList)
         return binding.root
     }

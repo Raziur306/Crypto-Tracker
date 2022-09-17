@@ -1,6 +1,7 @@
 package com.eritlab.cryptotracker.fragment.fragmentDetails
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,7 +23,15 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetailsBinding.inflate(layoutInflater)
-        val data = arguments?.getParcelable<CryptoCurrency>("data")!!
+        val data =
+            if (Build.VERSION_CODES.TIRAMISU <= Build.VERSION.SDK_INT) {
+                arguments?.getParcelable("data", CryptoCurrency::class.java)!!
+            } else {
+                @Suppress("DEPRECATION")
+                arguments?.getParcelable<CryptoCurrency>("data")!!
+            }
+
+
         setData(data)
         setChart("D", data)
         sharedPref = requireActivity().applicationContext as SharedPref
