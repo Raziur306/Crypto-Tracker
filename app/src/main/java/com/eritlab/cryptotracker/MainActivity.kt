@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
             val activeFragment =
                 supportFragmentManager.findFragmentByTag("TOP_LOSERS_FRAGMENT") != null
                         || supportFragmentManager.findFragmentByTag("TOP_GAINERS_FRAGMENT") != null
+                        || supportFragmentManager.findFragmentByTag("WATCH_LIST_FRAGMENT") != null
             if (activeFragment) {
                 binding.bottomBar.visibility = View.GONE
             } else
