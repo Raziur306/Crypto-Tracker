@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.eritlab.cryptotracker.databinding.ActivityMainBinding
 import com.eritlab.cryptotracker.fragment.dashboard.DashboardFragment
-import com.eritlab.cryptotracker.fragment.portfolio.PortfolioFragment
+import com.eritlab.cryptotracker.fragment.market.MarketFragment
 import com.eritlab.cryptotracker.fragment.watchlist.WatchListFragment
 
 class MainActivity : AppCompatActivity() {
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 1 -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.parentFragmentViewer, PortfolioFragment()).commit()
+                        .replace(R.id.parentFragmentViewer, MarketFragment()).commit()
                 }
                 2 -> {
                     supportFragmentManager.beginTransaction()
@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager.findFragmentByTag("TOP_LOSERS_FRAGMENT") != null
                         || supportFragmentManager.findFragmentByTag("TOP_GAINERS_FRAGMENT") != null
                         || supportFragmentManager.findFragmentByTag("WATCH_LIST_FRAGMENT") != null
+                        || supportFragmentManager.findFragmentByTag("MARKET_DETAILS_FRAGMENT") != null
             if (activeFragment) {
                 binding.bottomBar.visibility = View.GONE
             } else

@@ -10,7 +10,7 @@
     <item
         android:id="@+id/portfoloo"
         android:icon="@drawable/ic_monitoring"
-        android:title="Portfolio"
+        android:title="Market"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/watchList"

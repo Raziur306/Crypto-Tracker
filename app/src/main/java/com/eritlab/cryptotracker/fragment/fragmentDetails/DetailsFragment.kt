@@ -146,7 +146,7 @@ class DetailsFragment : Fragment() {
             .load("https://s2.coinmarketcap.com/static/img/coins/64x64/${data.id}.png")
             .thumbnail(Glide.with(requireActivity()).load(R.drawable.loading))
             .into(binding.currencyImage)
-        binding.currentPrice.text = "$" + data.quotes[0].price.toString()
+        binding.currentPrice.text = "$" + data.quotes?.get(0)!!.price.toString()
 
         binding.currencySymbol.text = data.symbol
         setCurrentState(data.quotes[0].percentChange24h)
